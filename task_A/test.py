@@ -1,35 +1,69 @@
+import pytest
 from a import getDistance
 
-# TODO: Prepare actual tests for the task
-tests = [
-    {
-        'args': {
-            'graph': None,
-            'destNode': 1
-        },
-        'expected': 0
-    },
-    {
-        'args': {
-            'graph': None,
-            'destNode': 1
-        },
-        'expected': 1
-    }
-]
-
-print(f'Will execute {len(tests)} tests')
-
-successful = 0
-for i, test in enumerate(tests):
-    if getDistance(**test['args']) == test['expected']:
-        print(f'Test {i + 1}: passed')
-        successful += 1
-    else:
-        print(f'Test {i + 1}: failed')
-        print('   Arguments:')
-        for key, value in test['args'].items():
-            print(f'    - {key}: {value}')
-        print(f'   Expected result: {test["expected"]}\n')
-
-print(f'{successful} out of {len(tests)} ({successful/len(tests)*100:.1f}%) tests passed')
+@pytest.mark.parametrize("graph, destNode, expected", [
+    ([
+        [False, True, True, False, False],
+        [False, False, True, True, False],
+        [False, True, False, True, True],
+        [False, False, False, False, True],
+        [False, False, False, False, False]
+    ], 4, 2),
+    ([
+        [False, True, True, False],
+        [False, False, True, False],
+        [False, False, False, True],
+        [False, False, False, False]
+    ], 3, 2),
+    ([
+        [False, True, False, False, False],
+        [False, False, True, False, False],
+        [False, False, False, True, False],
+        [False, False, False, False, True],
+        [False, False, False, False, False]
+    ], 4, 4),
+    ([
+        [False, True, False, False],
+        [False, False, True, False],
+        [False, False, False, True],
+        [False, False, False, False]
+    ], 2, 2),
+    ([
+        [False, True, True, True],
+        [False, False, False, False],
+        [False, False, False, False],
+        [False, False, False, False]
+    ], 3, 1),
+    ([
+        [False, True, False, False],
+        [False, False, True, False],
+        [False, False, False, True],
+        [False, False, False, False]
+    ], 1, 1),
+    ([
+        [False, True, True, False],
+        [False, False, False, True],
+        [False, False, False, True],
+        [False, False, False, False]
+    ], 3, 2),
+    ([
+        [False, True, False, False],
+        [False, False, True, True],
+        [False, False, False, True],
+        [False, False, False, False]
+    ], 3, 2),
+    ([
+        [False, True, True, True],
+        [False, False, False, False],
+        [False, False, False, False],
+        [False, False, False, False]
+    ], 2, 1),
+    ([
+        [False, True, True, False],
+        [False, False, False, True],
+        [False, False, False, False],
+        [False, False, False, False]
+    ], 1, 1)
+])
+def test_getDistance(graph, destNode, expected):
+    assert getDistance(graph, destNode) == expected

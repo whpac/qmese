@@ -41,7 +41,7 @@ corresponsing nodes have been marked using the same colors.
 ## Testing
 We have prepared a set of test cases to assure that your solution works fine. You can launch the
 testing code as often as you wish, by running the `test.py` file (e.g. by typing in terminal
-`python test.py`).
+`pytest test.py`).
 
 Performance of your solution is not taken into account.
 
