@@ -45,6 +45,9 @@ testing code as often as you wish, by running the `test.py` file (e.g. by typing
 
 Performance of your solution is not taken into account.
 
+If you don't have `pytest` installed on your computer, run command `pip install pytest` in order
+to install it.
+
 ## Description of balance check algorithm
 ### Height calculation
 For this algorithm, we will need an additional helper function that measures the tree height.
